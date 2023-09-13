@@ -8,7 +8,7 @@ This project is about introducing the security aspect (authentication and author
 
 ## Keycloak
 
-KeyCloak is an OIDC server which offers authentication and authorization features. The Keycloak configuration required to run the applications is provided in this project and could be imported into Keycloak easily through Admin GUI. We can also manually create the Keycloak configurations by referring to the properties file in the Microservice applications. The main entitles to be created are realm, clients (public and confidential) and user in the realm.
+KeyCloak is an OIDC server which offers authentication and authorization features. The Keycloak configuration required to run the applications is provided in this project and could be imported into Keycloak easily through Admin GUI. We can also manually create the Keycloak configurations by referring to the properties file in the Microservice applications. The main entitles to be created are realm, clients (public and confidential) and user in the realm. In simple terms, client (web or Microservices) provide Keycloak (or any OIDC/Oauth2.0 server) with the client credentails in lieu of an access token which is passed to the the resource server (application) for authorization over a resource.
 
 
 ## SpringBoot Web application (Authorization code with PKCE)
