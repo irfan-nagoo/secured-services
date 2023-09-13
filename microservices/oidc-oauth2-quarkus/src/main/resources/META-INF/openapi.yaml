@@ -1,0 +1,93 @@
+openapi: 3.0.3
+info:
+  title: OIDC Oauth2 Quarkus API
+  version: 1.0.0-SNAPSHOT
+paths:
+  /access-token/generate:
+    post:
+      tags:
+        - Token Generator Resource
+      parameters:
+        - name: clientId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: secret
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+  /authorization/decision:
+    get:
+      tags:
+        - Authorization Resource
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+  /message/fetch:
+    get:
+      tags:
+        - Message Resource
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+components:
+  schemas:
+    Token:
+      type: object
+      properties:
+        access_token:
+          type: string
+        expires_in:
+          format: int64
+          type: integer
+        refresh_expires_in:
+          format: int64
+          type: integer
+        refresh_token:
+          type: string
+        token_type:
+          type: string
+        not-before-policy:
+          format: int64
+          type: integer
+        session_state:
+          type: string
+        scope:
+          type: string
+    BaseResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: SecurityScheme(Bearer)
+      bearerFormat: JWT
+    openId:
+      type: openIdConnect
+      openIdConnectUrl: http://172.18.192.201:8080/realms/universe/.well-known/openid-configuration
+      description: SecurityScheme(OpenIDConnect)
+security:
+  - bearerAuth: []
+  - openId: []
