@@ -74,5 +74,10 @@ components:
       scheme: bearer
       description: SecurityScheme(Bearer)
       bearerFormat: JWT
+    openId:
+      type: openIdConnect
+      openIdConnectUrl: http://172.18.192.201:8080/realms/universe/.well-known/openid-configuration
+      description: SecurityScheme(OpenIDConnect)
 security:
-  - bearerAuth: []
+  - bearerAuth: [ ]
+  - openId: [ ]

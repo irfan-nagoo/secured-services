@@ -1,0 +1,35 @@
+---
+openapi: 3.0.1
+info:
+  title: keycloak-springboot-oidc API
+  version: v0
+servers:
+- url: http://192.168.29.118:8082
+  description: Generated server url
+paths:
+  "/keycloak/hello":
+    get:
+      tags:
+      - key-cloak-controller
+      operationId: sayHello
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: string
+components:
+    securitySchemes:
+      bearerAuth:
+        type: http
+        scheme: bearer
+        description: SecurityScheme(Bearer)
+        bearerFormat: JWT
+      openId:
+        type: openIdConnect
+        openIdConnectUrl: http://172.18.192.201:8080/realms/universe/.well-known/openid-configuration
+        description: SecurityScheme(OpenIDConnect)
+security:
+  - bearerAuth: []
+  - openId: []
